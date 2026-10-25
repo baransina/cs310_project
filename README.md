@@ -12,7 +12,7 @@
 * Ömer Baran Sına - 35301
 * Emir Kerem Subaşı - 34422
 * Tolgahan Ercan - 34465
-* [Ahmet Efe Aydoğdu] - [Öğrenci Numarası]
+* Ahmet Efe Aydoğdu - 34119
 
 ---
 
