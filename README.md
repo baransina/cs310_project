@@ -5,12 +5,12 @@
 ## CS310 Mobile Application Development - Project Step 1
 
 ### Group Details
-* **Group Number:** Group [Grup Numarası]
-* **Step 1 Coordinator:** [Senin Adın Soyadın]
+* **Group Number:** Group 10
+* **Step 1 Coordinator:** Ömer Baran Sına
 
 ### Team Members
-* [Senin Adın Soyadın] - [Öğrenci Numarası]
-* [2. Üye Adı Soyadı] - [Öğrenci Numarası]
+* Ömer Baran Sına - 35301
+* Emir Kerem Subaşı - 34422
 * [3. Üye Adı Soyadı] - [Öğrenci Numarası]
 * [4. Üye Adı Soyadı] - [Öğrenci Numarası]
 
