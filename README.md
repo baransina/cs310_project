@@ -11,8 +11,8 @@
 ### Team Members
 * Ömer Baran Sına - 35301
 * Emir Kerem Subaşı - 34422
-* [3. Üye Adı Soyadı] - [Öğrenci Numarası]
-* [4. Üye Adı Soyadı] - [Öğrenci Numarası]
+* Tolgahan Ercan - 34465
+* [Ahmet Efe Aydoğdu] - [Öğrenci Numarası]
 
 ---
 
