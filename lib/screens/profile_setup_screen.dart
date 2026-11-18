@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'notification_level_screen.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
 	const ProfileSetupScreen({
@@ -57,27 +58,16 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
 	void _continueSetup() {
 		if (_formKey.currentState!.validate()) {
-			showDialog(
-				context: context,
-				builder: (dialogContext) {
-					return AlertDialog(
-						title: const Text('Profile information'),
-						content: Text(
-							'Name: ${_nameController.text.trim()}\n'
-							'Major: ${_majorController.text.trim()}\n'
-							'Email: ${widget.email}\n'
-							'Courses: ${_courses.join(', ')}',
-						),
-						actions: [
-							TextButton(
-								onPressed: () {
-									Navigator.pop(dialogContext);
-								},
-								child: const Text('OK'),
-							),
-						],
-					);
-				},
+			Navigator.push(
+				context,
+				MaterialPageRoute(
+					builder: (context) => NotificationLevelScreen(
+						email: widget.email,
+						name: _nameController.text.trim(),
+						major: _majorController.text.trim(),
+						courses: List<String>.from(_courses),
+					),
+				),
 			);
 		}
 	}
