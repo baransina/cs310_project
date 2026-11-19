@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'profile_screen.dart';
+import 'root_screen.dart';
 
 class NotificationLevelScreen extends StatefulWidget {
 	const NotificationLevelScreen({
@@ -43,10 +43,10 @@ class _NotificationLevelScreenState
 	}
 
 	void _finishSetup() {
-		Navigator.push(
+		Navigator.pushAndRemoveUntil(
 			context,
 			MaterialPageRoute(
-				builder: (context) => ProfileScreen(
+				builder: (context) => RootScreen(
 					email: widget.email,
 					name: widget.name,
 					major: widget.major,
@@ -54,6 +54,7 @@ class _NotificationLevelScreenState
 					nagLevel: _selectedLevel,
 				),
 			),
+			(route) => false,
 		);
 	}
 

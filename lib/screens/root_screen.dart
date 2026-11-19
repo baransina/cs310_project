@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import 'home/home_screen.dart';
-//import 'tasks/task_list_screen.dart';
+import 'tasks/task_list_screen.dart' show TaskListScreen;
 import 'events/event_list_screen.dart';
 import 'friends/friends_screen.dart';
 import 'profile_screen.dart';
 
 class RootScreen extends StatefulWidget {
-  const RootScreen({super.key});
+  const RootScreen({
+	  super.key,
+	  this.email = 'demo@sabanciuniv.edu',
+	  this.name = 'Demo Student',
+	  this.major = 'Computer Science',
+	  this.courses = const ['CS310', 'CS303'],
+	  this.nagLevel = 'Normal',
+  });
+
+	final String email;
+	final String name;
+	final String major;
+	final List<String> courses;
+	final String nagLevel;
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -15,12 +28,18 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int index = 0;
-  final List<Widget> _screens = [
+  	List<Widget> get _screens => [
     const HomeScreen(),
-    const Center(child: Text('Tasks Screen')),//geçici
+    const TaskListScreen(),
     EventListScreen(),
     FriendsScreen(),
-    Center(child: Text('Profile Screen')),
+    ProfileScreen(
+			email: widget.email,
+			name: widget.name,
+			major: widget.major,
+			courses: widget.courses,
+			nagLevel: widget.nagLevel,
+		),
   ];
 
   @override

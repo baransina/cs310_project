@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
+import 'root_screen.dart';
 
 class LoginScreen extends StatefulWidget {
 	const LoginScreen({super.key});
@@ -17,10 +18,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
 	void _signIn() {
 		if (_formKey.currentState!.validate()) {
-			ScaffoldMessenger.of(context).showSnackBar(
-				const SnackBar(
-					content: Text('Login form is valid'),
+			Navigator.pushAndRemoveUntil(
+				context,
+				MaterialPageRoute(
+					builder: (context) => RootScreen(
+						email: _emailController.text.trim(),
+					),
 				),
+				(route) => false,
 			);
 		}
 	}
