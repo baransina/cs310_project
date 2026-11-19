@@ -4,9 +4,6 @@ import '../../models/study_event.dart';
 import '../../theme.dart';
 import '../../widgets/common_widgets.dart';
 
-// Screen 11 - Event Detail & RSVP
-// Changes the event object directly (join / leave), so the list screen
-// only needs setState() when it comes back.
 class EventDetailScreen extends StatefulWidget {
   const EventDetailScreen({super.key, required this.event});
   final StudyEvent event;
@@ -35,15 +32,47 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
     _showMessage('You left ${e.title}');
   }
 
+  Future<void> _cancelSession() async {
+    final others = e.seatsTaken - 1;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Cancel this session?'),
+        content: Text(others > 0
+            ? '$others ${others == 1 ? 'person has' : 'people have'} joined. '
+                'They will be notified that the session is cancelled.'
+            : 'The session will be removed from the list.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Keep it'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.red),
+            child: const Text('Cancel session'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true && mounted) {
+      Navigator.pop(context, true);
+    }
+  }
+
   Widget _mainButton() {
     final shape = RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppSpacing.radius));
 
     if (e.isHost) {
       return OutlinedButton(
-        onPressed: null,
-        style: OutlinedButton.styleFrom(shape: shape),
-        child: const Text("You're hosting this session"),
+        onPressed: _cancelSession,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.red,
+          side: const BorderSide(color: AppColors.red),
+          shape: shape,
+        ),
+        child: const Text('Cancel session'),
       );
     }
     if (e.isJoined) {
@@ -81,7 +110,6 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
         padding: const EdgeInsets.fromLTRB(
             AppSpacing.page, AppSpacing.sm, AppSpacing.page, AppSpacing.lg),
         children: [
-          // 1 - Who, where, when
           Text(
             e.location.toUpperCase(),
             style: const TextStyle(
@@ -110,7 +138,6 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
             ],
           ),
 
-          // 2 - Seats
           const SizedBox(height: AppSpacing.lg),
           Row(
             children: [
@@ -161,7 +188,6 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
             ),
           ],
 
-          // 3 - Join / Group chat
           const SizedBox(height: AppSpacing.lg),
           SizedBox(height: 50, child: _mainButton()),
           const SizedBox(height: AppSpacing.sm),

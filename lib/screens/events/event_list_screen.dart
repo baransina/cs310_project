@@ -6,7 +6,6 @@ import '../../widgets/common_widgets.dart';
 import 'create_event_screen.dart';
 import 'event_detail_screen.dart';
 
-// Screen 09 - Study Events
 class EventListScreen extends StatefulWidget {
   const EventListScreen({super.key});
 
@@ -31,11 +30,16 @@ class _EventListScreenState extends State<EventListScreen> {
   }
 
   Future<void> _openDetail(StudyEvent e) async {
-    await Navigator.push(
+    final cancelled = await Navigator.push<bool>(
       context,
       MaterialPageRoute(builder: (_) => EventDetailScreen(event: e)),
     );
-    // Join / leave may have changed on the detail screen.
+    if (!mounted) return;
+    if (cancelled == true) {
+      setState(() => events.remove(e));
+      _showMessage('Session cancelled: ${e.title}');
+      return;
+    }
     setState(() {});
   }
 
@@ -212,7 +216,6 @@ class EventCard extends StatelessWidget {
   }
 }
 
-// Map view is an optional feature in the plan.
 class _MapPlaceholder extends StatelessWidget {
   const _MapPlaceholder();
 

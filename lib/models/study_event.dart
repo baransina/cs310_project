@@ -1,16 +1,8 @@
-// Study event (study session) model.
-// Fields match the "events" collection in the Step 2 plan:
-// eventId · hostId · courseCode · location · dateTime · maxParticipants · attendeeIds
-// Extra fields (title, duration, visibility, note, hostName) are shown on screens 09-11.
-
-// Until Firebase Auth is connected, the logged-in user is "me".
 const String currentUserId = 'me';
 const String currentUserName = 'Deniz Y.';
 
-// Courses of the current user (later: from the user's profile).
 const List<String> myCourses = ['CS310', 'CS303', 'MATH204', 'SPS102'];
 
-// Places on campus the host can pick from (Screen 10).
 const List<String> campusLocations = [
   'Library · Floor 1',
   'Library · Floor 2',
@@ -21,7 +13,6 @@ const List<String> campusLocations = [
   'UC · Study Area',
 ];
 
-// Names of users, used for participant avatars.
 const Map<String, String> userNames = {
   'me': 'You',
   'u1': 'Ece Y.',
@@ -74,7 +65,6 @@ class StudyEvent {
   bool get isHost => hostId == currentUserId;
   DateTime get endTime => dateTime.add(Duration(minutes: durationMinutes));
 
-  // Returns false if the user can't join (already joined or full).
   bool join() {
     if (isJoined || isFull) return false;
     attendeeIds.add(currentUserId);
@@ -88,7 +78,6 @@ class StudyEvent {
 
 List<StudyEvent> createDummyEvents() {
   final n = DateTime.now();
-  // Next Tuesday (never today).
   int toTuesday = (DateTime.tuesday - n.weekday + 7) % 7;
   if (toTuesday == 0) toTuesday = 7;
 
@@ -136,7 +125,6 @@ List<StudyEvent> createDummyEvents() {
   ];
 }
 
-// For the Home screen: the next session the user joined (or null).
 StudyEvent? nextJoinedEvent(List<StudyEvent> events) {
   final joined = events
       .where((e) => e.isJoined && e.endTime.isAfter(DateTime.now()))
@@ -144,8 +132,6 @@ StudyEvent? nextJoinedEvent(List<StudyEvent> events) {
     ..sort((a, b) => a.dateTime.compareTo(b.dateTime));
   return joined.isEmpty ? null : joined.first;
 }
-
-// ---- Date helpers (no intl package needed) ----
 
 const _weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 const _months = [
@@ -157,7 +143,6 @@ String _two(int n) => n.toString().padLeft(2, '0');
 
 String formatTime(DateTime d) => '${_two(d.hour)}:${_two(d.minute)}';
 
-// "Today", "Tomorrow", "Tue" (this week) or "Nov 25".
 String formatDay(DateTime d) {
   final now = DateTime.now();
   final today = DateTime(now.year, now.month, now.day);
