@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-// Kendi oluşturduğun sayfaları import ediyorsun
 import 'theme.dart';
 import 'screens/root_screen.dart';
 
