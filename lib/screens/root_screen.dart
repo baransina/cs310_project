@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 import 'home/home_screen.dart';
-import 'tasks/task_list_screen.dart'; 
-import 'events/event_list_screen.dart'; 
-import 'friends/friends_screen.dart'; 
+//import 'tasks/task_list_screen.dart';
+import 'events/event_list_screen.dart';
+import 'friends/friends_screen.dart';
+import 'profile_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -14,12 +15,12 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int index = 0;
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    TaskListScreen(),
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const Center(child: Text('Tasks Screen')),//geçici
     EventListScreen(),
     FriendsScreen(),
-    Center(child: Text('Profile Screen')), 
+    Center(child: Text('Profile Screen')),
   ];
 
   @override
