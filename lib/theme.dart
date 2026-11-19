@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// Shared colors, text styles and spacing.
-// Same values as the Task List screen so every tab looks the same.
-
 class AppColors {
   static const Color primary = Color(0xFF3D5AFE);
   static const Color primaryLight = Color(0xFFE8EBFF);
@@ -37,13 +34,11 @@ class AppSpacing {
   static const double page = 20, radius = 14;
 }
 
-// Card border used by all list cards.
 RoundedRectangleBorder appCardShape() => RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSpacing.radius),
       side: const BorderSide(color: AppColors.border),
     );
 
-// Input box decoration used by the forms.
 InputDecoration appInputDecoration({String? hint, Widget? prefixIcon}) =>
     InputDecoration(
       hintText: hint,

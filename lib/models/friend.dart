@@ -1,5 +1,3 @@
-// Friend model for Screen 12. Friends live in the "users" collection in the plan.
-
 enum FriendStatus { studying, online, offline }
 
 class Friend {
@@ -9,7 +7,7 @@ class Friend {
   final FriendStatus status;
   final String statusText;
   final List<String> courses;
-  final bool isPending; // request sent, not accepted yet
+  final bool isPending;
 
   const Friend({
     required this.id,
@@ -32,7 +30,6 @@ class Friend {
       );
 }
 
-// "Ece Y." -> "EY", "deniz yilmaz" -> "DY"
 String initialsOf(String name) {
   final parts = name.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty);
   final letters = parts.take(2).map((p) => p[0].toUpperCase()).join();
@@ -82,7 +79,6 @@ List<Friend> createDummyFriends() => const [
       ),
     ];
 
-// Classmates from the same courses that the user doesn't follow yet.
 List<Friend> createSuggestedClassmates() => const [
       Friend(
         id: 's1',
@@ -126,6 +122,5 @@ List<Friend> createSuggestedClassmates() => const [
       ),
     ];
 
-// For the Home screen: "● 3 friends studying now"
 int friendsStudyingNow(List<Friend> friends) =>
     friends.where((f) => f.status == FriendStatus.studying).length;

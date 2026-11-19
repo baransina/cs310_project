@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../models/study_event.dart';
 import '../../theme.dart';
 
-// Screen 10 - Create Event ("Host a session")
-// Returns the new StudyEvent with Navigator.pop, or null on Cancel.
 class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
 
@@ -31,7 +29,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   @override
   void initState() {
     super.initState();
-    // Default: the next full hour.
     final next = DateTime.now().add(const Duration(hours: 1));
     _date = DateTime(next.year, next.month, next.day);
     _time = TimeOfDay(hour: next.hour, minute: 0);
@@ -86,15 +83,15 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
       maxParticipants: _maxParticipants,
       visibility: _visibility,
       note: _noteController.text.trim(),
-      attendeeIds: [currentUserId], // the host is the first participant
+      attendeeIds: [currentUserId],
     );
     Navigator.pop(context, event);
   }
 
   Widget _label(String text) => Padding(
-    padding: const EdgeInsets.only(top: AppSpacing.md, bottom: 6),
-    child: Text(text, style: AppText.label),
-  );
+        padding: const EdgeInsets.only(top: AppSpacing.md, bottom: 6),
+        child: Text(text, style: AppText.label),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -228,14 +225,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                 controller: _noteController,
                 maxLines: 3,
                 decoration:
-                appInputDecoration(hint: 'Bring: laptop, lecture slides…'),
+                    appInputDecoration(hint: 'Bring: laptop, lecture slides…'),
               ),
-
             ],
           ),
         ),
       ),
-      // Button is pinned to the bottom so it is always visible.
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(

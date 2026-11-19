@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/friend.dart';
 import '../theme.dart';
 
-// Small blue chip with the course code, e.g. "CS310".
 class CourseChip extends StatelessWidget {
   const CourseChip({super.key, required this.course});
   final String course;
@@ -29,7 +28,6 @@ class CourseChip extends StatelessWidget {
   }
 }
 
-// Round avatar with the person's initials.
 class PersonAvatar extends StatelessWidget {
   const PersonAvatar({super.key, required this.name, this.radius = 22});
   final String name;
@@ -52,7 +50,6 @@ class PersonAvatar extends StatelessWidget {
   }
 }
 
-// Outlined colored tag, e.g. "Studying", "Full", "Going".
 class StatusTag extends StatelessWidget {
   const StatusTag({super.key, required this.text, required this.color});
   final String text;

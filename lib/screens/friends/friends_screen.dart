@@ -5,7 +5,6 @@ import '../../models/study_event.dart' show myCourses;
 import '../../theme.dart';
 import '../../widgets/common_widgets.dart';
 
-// Screen 12 - Friends
 class FriendsScreen extends StatefulWidget {
   const FriendsScreen({super.key});
 
@@ -52,8 +51,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
     });
     _showMessage('Friend request sent to ${s.name}');
   }
-
-  // ---- Add friend dialog ----
 
   String _nameFromEmail(String email) {
     final local = email.split('@').first;
@@ -129,8 +126,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
     _showMessage('Friend request sent to ${friend.name}');
   }
 
-  // ---- Same courses bottom sheet ----
-
   void _openSuggestions(String course) {
     showModalBottomSheet(
       context: context,
@@ -193,7 +188,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
               padding: const EdgeInsets.fromLTRB(
                   AppSpacing.page, AppSpacing.sm, AppSpacing.page, AppSpacing.md),
               children: [
-                // Search
                 TextField(
                   onChanged: (v) => setState(() => query = v),
                   decoration: appInputDecoration(
@@ -203,7 +197,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
                 ),
                 const SizedBox(height: AppSpacing.md),
 
-                // 1 - Live status
                 if (visible.isEmpty)
                   Padding(
                     padding: const EdgeInsets.all(AppSpacing.lg),
@@ -212,7 +205,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
                   ),
                 for (final f in visible) FriendTile(friend: f),
 
-                // 2 - Same courses
                 if (courseCounts.isNotEmpty) ...[
                   const SizedBox(height: AppSpacing.md),
                   const Text('Same courses', style: AppText.section),
@@ -241,7 +233,6 @@ class _FriendsScreenState extends State<FriendsScreen> {
             ),
           ),
 
-          // 3 - Add friend
           SafeArea(
             top: false,
             child: Padding(

@@ -4,9 +4,6 @@ import 'screens/events/event_list_screen.dart';
 import 'screens/friends/friends_screen.dart';
 import 'theme.dart';
 
-// Test entry point for the Events + Friends screens (Screens 09-12).
-// Run with:  flutter run -t lib/dev_events_main.dart
-// The real app (lib/main.dart) is not changed.
 void main() => runApp(const DevEventsApp());
 
 class DevEventsApp extends StatelessWidget {
@@ -40,7 +37,6 @@ class _DevShellState extends State<_DevShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // IndexedStack keeps each tab's state when switching.
       body: IndexedStack(
         index: index,
         children: const [EventListScreen(), FriendsScreen()],
