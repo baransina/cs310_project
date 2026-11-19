@@ -9,9 +9,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List> todayTasks = [
-    {'id': '1', 'title': 'Project prototype', 'course': 'CS310', 'priority': 'High', 'color': AppColors.red},
-    {'id': '2', 'title': 'Quiz 3 revision', 'course': 'CS303', 'priority': 'Medium', 'color': AppColors.orange},
+  var todayTasks = [
+  {'id': '1', 'title': 'Project prototype', 'course': 'CS310', 'priority': 'High', 'color': AppColors.red},
+  {'id': '2', 'title': 'Quiz 3 revision', 'course': 'CS303', 'priority': 'Medium', 'color': AppColors.orange},
   ];
 
   void _removeTask(String id) {
@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: SingleChildScrollView( 
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(AppSpacing.page),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,16 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(AppSpacing.page),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1C1C28), 
+                  color: const Color(0xFF1C1C28),
                   borderRadius: BorderRadius.circular(AppSpacing.radius),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('NEXT DEADLINE • CS310 PROJECT', 
+                    Text('NEXT DEADLINE • CS310 PROJECT',
                         style: AppText.label.copyWith(fontSize: 12, color: AppColors.textGrey)),
                     const SizedBox(height: AppSpacing.sm),
-                    const Text('02d 14h 08m', 
+                    const Text('02d 14h 08m',
                         style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
                     const SizedBox(height: AppSpacing.md),
                     LinearProgressIndicator(
@@ -77,13 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: AppSpacing.lg),
-
-              const Text('Today', style: AppText.section),
+              Text('Today', style: AppText.section),
               const SizedBox(height: AppSpacing.md),
               ...todayTasks.map((task) => Dismissible(
-                key: Key(task['id']),
+                key: Key(task['id'] as String),
                 direction: DismissDirection.endToStart,
-                onDismissed: (direction) => _removeTask(task['id']),
+                onDismissed: (direction) => _removeTask(task['id'] as String),
                 background: Container(
                   margin: const EdgeInsets.only(bottom: AppSpacing.sm),
                   decoration: BoxDecoration(
@@ -98,18 +97,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 0,
                   color: AppColors.card,
                   margin: const EdgeInsets.only(bottom: AppSpacing.sm),
-                  shape: appCardShape(), 
+                  shape: appCardShape(),
                   child: ListTile(
                     leading: const Icon(Icons.circle_outlined, color: AppColors.textGrey),
-                    title: Text(task['title'], style: AppText.cardTitle),
+                    title: Text(task['title'] as String, style: AppText.cardTitle),
                     subtitle: Text('${task['course']} • ${task['priority']} priority', style: AppText.small),
-                    trailing: Icon(Icons.circle, size: 12, color: task['color']),
+                    trailing: Icon(Icons.circle, size: 12, color: task['color'] as Color),
                   ),
                 ),
               )),
-              
               const SizedBox(height: AppSpacing.lg),
-              const Text('Upcoming session', style: AppText.section),
+              Text('Upcoming session', style: AppText.section),
               const SizedBox(height: AppSpacing.md),
               Container(
                 padding: const EdgeInsets.all(AppSpacing.md),
