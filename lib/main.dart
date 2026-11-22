@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
 			debugShowCheckedModeBanner: false,
 			title: 'CampusConnect',
 			theme: ThemeData(
+				fontFamily: 'Inter',
 				colorScheme: ColorScheme.fromSeed(
 					seedColor: AppColors.primary,
 				),
